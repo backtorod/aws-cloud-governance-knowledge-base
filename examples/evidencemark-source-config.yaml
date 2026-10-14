@@ -1,0 +1,37 @@
+apiVersion: evidencemark.io/v1alpha1
+kind: KnowledgeSource
+metadata:
+  name: aws-cloud-governance-knowledge-base
+spec:
+  type: github
+  repository: backtorod/aws-cloud-governance-knowledge-base
+  visibility: public
+  reference:
+    branch: main
+    pinResolvedCommit: true
+  entrypoints:
+    - AGENTS.md
+    - catalog/sources.yaml
+    - docs/
+    - schemas/
+  ingestion:
+    mode: selected-paths
+    recursiveUpstreams: false
+    preserveProvenance: true
+    calculateSha256: true
+    validateSchemas: true
+  refresh:
+    onMerge: true
+    schedule: "0 6 * * 1"
+    timezone: America/Toronto
+  reviewPolicy:
+    requireHumanApprovalFor:
+      - authority_change
+      - license_change
+      - control_mapping_change
+      - source_removal
+      - breaking_schema_change
+    staleAfterDays: 90
+  tenancy:
+    sharedKnowledge: true
+    tenantPoliciesAndEvidence: isolated

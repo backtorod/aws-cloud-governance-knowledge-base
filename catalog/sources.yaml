@@ -1,0 +1,74 @@
+schema_version: "1.0"
+last_reviewed: "2026-10-14"
+purpose: "Curated source registry for AWS architecture, security, governance, policy-as-code, and EvidenceMark design."
+authority_levels:
+  aws_official: "AWS-owned guidance or reference implementation; verify current service behavior in AWS documentation."
+  vendor_maintained: "Maintained by the product or engine owner."
+  community_project: "Maintained open-source implementation or knowledge source."
+  community_curation: "Discovery aid; not normative authority."
+sources:
+  - id: aws-sra-examples
+    name: AWS Security Reference Architecture Examples
+    url: https://github.com/aws-samples/aws-security-reference-architecture-examples
+    authority: aws_official
+    categories: [multi-account, security-services, delegated-administration, stacksets, terraform]
+    use_for: [reference-architecture, implementation-patterns, evidence-expectations]
+    ingest: metadata_and_selected_paths
+    trust_note: "Reference implementation, not a substitute for current service documentation or customer validation."
+  - id: aws-security-services-best-practices
+    name: AWS Security Services Best Practices
+    url: https://github.com/aws/aws-security-services-best-practices
+    authority: aws_official
+    categories: [network-security, detection, inspection, centralized-security]
+    use_for: [design-rationale, service-patterns]
+    ingest: metadata_and_selected_paths
+  - id: aws-control-tower-controls-terraform
+    name: AWS Control Tower Controls Terraform
+    url: https://github.com/aws-samples/aws-control-tower-controls-terraform
+    authority: aws_official
+    categories: [control-tower, terraform, preventive, detective, proactive]
+    use_for: [control-implementation, pipeline-patterns]
+    ingest: metadata_and_selected_paths
+  - id: landing-zone-accelerator
+    name: Landing Zone Accelerator on AWS
+    url: https://github.com/awslabs/landing-zone-accelerator-on-aws
+    authority: aws_official
+    categories: [landing-zone, regulated-workloads, gitops, logging, networking, encryption]
+    use_for: [production-patterns, configuration-model, deployment-evidence]
+    ingest: releases_and_selected_paths
+  - id: awesome-aws
+    name: Awesome AWS
+    url: https://github.com/donnemartin/awesome-aws
+    authority: community_curation
+    categories: [discovery, aws-ecosystem]
+    use_for: [source-discovery]
+    ingest: metadata_only
+  - id: prowler
+    name: Prowler
+    url: https://github.com/prowler-cloud/prowler
+    authority: community_project
+    categories: [security-assessment, checks, compliance-mappings, findings]
+    use_for: [assessment-engine, check-catalog, evidence-source]
+    ingest: releases_check_metadata_and_results
+    trust_note: "Mappings and results support assessment; they do not independently establish compliance."
+  - id: checkov
+    name: Checkov
+    url: https://github.com/bridgecrewio/checkov
+    authority: vendor_maintained
+    categories: [policy-as-code, terraform, cloudformation, kubernetes, pre-deployment]
+    use_for: [proactive-control, rule-catalog, pipeline-evidence]
+    ingest: releases_policy_metadata_and_results
+  - id: awesome-architecture-governance
+    name: Awesome Architecture Governance
+    url: https://github.com/archguard/awesome-architecture-governance
+    authority: community_curation
+    categories: [architecture-governance, fitness-functions, continuous-verification]
+    use_for: [pattern-discovery]
+    ingest: metadata_only
+  - id: terraform-foundational-policies
+    name: Terraform Foundational Policies Library
+    url: https://github.com/hashicorp/terraform-foundational-policies-library
+    authority: vendor_maintained
+    categories: [sentinel, policy-as-code, terraform, cis]
+    use_for: [policy-patterns, pipeline-controls]
+    ingest: releases_and_selected_paths

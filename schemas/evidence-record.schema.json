@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evidencemark.com/schemas/evidence-record.schema.json",
+  "title": "EvidenceMark Evidence Record",
+  "type": "object",
+  "required": [
+    "id",
+    "tenant_id",
+    "source",
+    "collected_at",
+    "subject",
+    "artifact",
+    "integrity",
+    "control_ids"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "type",
+        "identifier"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "collection_method": {
+      "enum": [
+        "pull",
+        "push",
+        "workflow",
+        "manual",
+        "derived"
+      ]
+    },
+    "collected_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "observed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "subject": {
+      "type": "object",
+      "required": [
+        "type",
+        "identifier"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "media_type",
+        "location"
+      ],
+      "properties": {
+        "media_type": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "integrity": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "digest"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "signature": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "control_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "execution_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retention_class": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sensitivity": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
